@@ -102,16 +102,19 @@ namespace ccse_cw1.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-
+            [Display(Name = "First Name")]
             [Required]
             public string FirstName { get; set; }
 
+            [Display(Name = "Last Name")]
             [Required]
             public string LastName { get; set; }
 
+            [Display(Name = "Phone Number")]
             [Required]
             public string PhoneNumber { get; set; }
 
+            [Display(Name = "Address")]
             [Required]
             public string Address { get; set; }
 
@@ -130,10 +133,16 @@ namespace ccse_cw1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
-
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                var user = new ApplicationUser()
+                {
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    PhoneNumber = Input.PhoneNumber,
+                    Address = Input.Address,
+                    CreatedAt = DateTime.Now,
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
