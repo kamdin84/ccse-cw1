@@ -1,0 +1,34 @@
+﻿@page
+@model BookModel
+@{
+    ViewData["Title"] = "Bookings";
+}
+<h2><strong>Bookings</strong></h2>
+<div class="tab"><button class="tablinks">Hotels</button> <button class="tablinks">Tours</button> <button class="tablinks">Packages</button></div>
+<div id="Hotels" class="tabcontent">
+    <h3>Search Hotels</h3>
+    <hr />
+    <div class="form-group"><label for="check-in-date">Select Check-in Date:</label> <input id="check-in-date" type="date" /></div>
+    <div class="form-group"><label for="check-out-date">Select Check-out Date:</label> <input id="check-out-date" type="date" /></div>
+    <div class="form-group">
+        <label for="room-type">Select Room Type:</label><select id="room-type">
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+            <option value="family">Family Suite</option>
+        </select>
+    </div>
+    <div class="form-group"><label for="hotels">Hotels:</label><select id="hotels"></select></div>
+    <div class="form-group"><button class="btn btn-primary" type="submit">Book</button></div>
+</div>
+<div id="Tours" class="tabcontent">
+    <h3>Search Tours</h3>
+    <hr />
+    <div class="form-group"><label for="tour">Select Tour:</label><select id="tour"></select></div>
+    <div class="form-group"><label for="tour-start-date">Select Tour Start Date:</label> <input id="tour-start-date" type="date" /></div>
+    <div class="form-group"><label for="tour-end-date">Select Tour End Date:</label> <input id="tour-end-date" type="date" /></div>
+    <div class="form-group"><button class="btn btn-primary" type="submit">Book</button></div>
+</div>
+<div id="Packages" class="tabcontent">
+    <h3>Packages</h3>
+    <p>Pick Hotel and Tours to determine package deals.</p>
+</div>

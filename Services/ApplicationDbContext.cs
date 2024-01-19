@@ -26,6 +26,18 @@ namespace ccse_cw1.Services
             seller.NormalizedName = "seller";
 
             builder.Entity<IdentityRole>().HasData(admin, client, seller);
+
+            builder.Entity<ApplicationUser>()
+            .HasMany(u => u.Bookings)
+            .WithOne(b => b.User)
+            .HasForeignKey(b => b.UserID);
+
         }
-    }
+
+        public DbSet<Hotels> Hotels { get; set; }
+        public DbSet<Booking> Booking { get; set; }
+        public DbSet<Tours> Tours { get; set; }
+
+    
+}
     }
