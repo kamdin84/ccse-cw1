@@ -7,7 +7,7 @@ namespace ccse_cw1.Models
     public class Hotels
     {
         [Key]
-        public required int HotelID { get; set; }
+        public int HotelID { get; set; }
         public string HotelName { get; set; }
         public string HotelLocation { get; set;}
         public int SinglePrice { get; set; }
