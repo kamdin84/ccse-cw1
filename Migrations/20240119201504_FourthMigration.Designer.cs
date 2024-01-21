@@ -12,8 +12,8 @@ using ccse_cw1.Services;
 namespace ccse_cw1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240117193612_ThirdMigration")]
-    partial class ThirdMigration
+    [Migration("20240119201504_FourthMigration")]
+    partial class FourthMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,19 +54,19 @@ namespace ccse_cw1.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7135c159-4072-44aa-a16f-2e2d64b0bca9",
+                            Id = "9cd74423-b8f6-49b4-a3d7-29554aa5dfab",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "431e69a9-4eb6-4b86-8019-4a36481237ec",
+                            Id = "09d19ae5-e310-4131-9614-a4f8c2364ae3",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "5a32678c-57df-4f98-af71-915ce0293571",
+                            Id = "3f5c63af-a095-4613-a28c-e7b8e8bc59b5",
                             Name = "seller",
                             NormalizedName = "seller"
                         });
@@ -245,10 +245,6 @@ namespace ccse_cw1.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -264,6 +260,214 @@ namespace ccse_cw1.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ccse_cw1.Models.Booking", b =>
+                {
+                    b.Property<int>("BookingID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingID"));
+
+                    b.Property<DateTime>("CheckIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CheckOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("Cost")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("HotelID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RoomNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TourID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("BookingID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Booking");
+                });
+
+            modelBuilder.Entity("ccse_cw1.Models.Hotels", b =>
+                {
+                    b.Property<int>("HotelID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelID"));
+
+                    b.Property<int>("AvailableDouble")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AvailableFamily")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AvailableSingle")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DoublePrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FamilyPrice")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HotelLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotelName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SinglePrice")
+                        .HasColumnType("int");
+
+                    b.HasKey("HotelID");
+
+                    b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            HotelID = 1,
+                            AvailableDouble = 20,
+                            AvailableFamily = 20,
+                            AvailableSingle = 20,
+                            DoublePrice = 775,
+                            FamilyPrice = 950,
+                            HotelLocation = "London",
+                            HotelName = "Hilton London Hotel",
+                            SinglePrice = 375
+                        },
+                        new
+                        {
+                            HotelID = 2,
+                            AvailableDouble = 20,
+                            AvailableFamily = 20,
+                            AvailableSingle = 20,
+                            DoublePrice = 500,
+                            FamilyPrice = 900,
+                            HotelLocation = "London",
+                            HotelName = "London Marriott Hotel",
+                            SinglePrice = 300
+                        },
+                        new
+                        {
+                            HotelID = 3,
+                            AvailableDouble = 20,
+                            AvailableFamily = 20,
+                            AvailableSingle = 20,
+                            DoublePrice = 120,
+                            FamilyPrice = 150,
+                            HotelLocation = "Brighton",
+                            HotelName = "Travelodge Brighton Seafront",
+                            SinglePrice = 80
+                        },
+                        new
+                        {
+                            HotelID = 4,
+                            AvailableDouble = 20,
+                            AvailableFamily = 20,
+                            AvailableSingle = 20,
+                            DoublePrice = 400,
+                            FamilyPrice = 520,
+                            HotelLocation = "Brighton",
+                            HotelName = "Kings Hotel Brighton",
+                            SinglePrice = 180
+                        },
+                        new
+                        {
+                            HotelID = 5,
+                            AvailableDouble = 20,
+                            AvailableFamily = 20,
+                            AvailableSingle = 20,
+                            DoublePrice = 400,
+                            FamilyPrice = 520,
+                            HotelLocation = "Brighton",
+                            HotelName = "Leonardo Hotel Brighton",
+                            SinglePrice = 180
+                        },
+                        new
+                        {
+                            HotelID = 6,
+                            AvailableDouble = 20,
+                            AvailableFamily = 20,
+                            AvailableSingle = 20,
+                            DoublePrice = 100,
+                            FamilyPrice = 155,
+                            HotelLocation = "Fort William",
+                            HotelName = "Nevis Bank Inn, Fort William",
+                            SinglePrice = 90
+                        });
+                });
+
+            modelBuilder.Entity("ccse_cw1.Models.Tours", b =>
+                {
+                    b.Property<int>("TourID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TourID"));
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TourName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TourPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TourSpaces")
+                        .HasColumnType("int");
+
+                    b.HasKey("TourID");
+
+                    b.ToTable("Tours");
+
+                    b.HasData(
+                        new
+                        {
+                            TourID = 1,
+                            Duration = 6,
+                            TourName = "Real Britain",
+                            TourPrice = 1200,
+                            TourSpaces = 30
+                        },
+                        new
+                        {
+                            TourID = 2,
+                            Duration = 16,
+                            TourName = "Britain and Ireland Explorer",
+                            TourPrice = 2000,
+                            TourSpaces = 40
+                        },
+                        new
+                        {
+                            TourID = 3,
+                            Duration = 12,
+                            TourName = "Best of Britain",
+                            TourPrice = 2900,
+                            TourSpaces = 30
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -315,6 +519,22 @@ namespace ccse_cw1.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ccse_cw1.Models.Booking", b =>
+                {
+                    b.HasOne("ccse_cw1.Models.ApplicationUser", "User")
+                        .WithMany("Bookings")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ccse_cw1.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

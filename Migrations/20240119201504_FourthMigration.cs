@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ccse_cw1.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class FourthMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,6 +54,42 @@ namespace ccse_cw1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hotels",
+                columns: table => new
+                {
+                    HotelID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HotelName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HotelLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SinglePrice = table.Column<int>(type: "int", nullable: false),
+                    DoublePrice = table.Column<int>(type: "int", nullable: false),
+                    FamilyPrice = table.Column<int>(type: "int", nullable: false),
+                    AvailableSingle = table.Column<int>(type: "int", nullable: false),
+                    AvailableDouble = table.Column<int>(type: "int", nullable: false),
+                    AvailableFamily = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hotels", x => x.HotelID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tours",
+                columns: table => new
+                {
+                    TourID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TourName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TourPrice = table.Column<int>(type: "int", nullable: false),
+                    TourSpaces = table.Column<int>(type: "int", nullable: false),
+                    Duration = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tours", x => x.TourID);
                 });
 
             migrationBuilder.CreateTable(
@@ -160,6 +198,66 @@ namespace ccse_cw1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Booking",
+                columns: table => new
+                {
+                    BookingID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    HotelID = table.Column<int>(type: "int", nullable: true),
+                    RoomNumber = table.Column<int>(type: "int", nullable: true),
+                    TourID = table.Column<int>(type: "int", nullable: true),
+                    Cost = table.Column<float>(type: "real", nullable: false),
+                    Discount = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CheckIn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CheckOut = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking", x => x.BookingID);
+                    table.ForeignKey(
+                        name: "FK_Booking_AspNetUsers_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "09d19ae5-e310-4131-9614-a4f8c2364ae3", null, "client", "client" },
+                    { "3f5c63af-a095-4613-a28c-e7b8e8bc59b5", null, "seller", "seller" },
+                    { "9cd74423-b8f6-49b4-a3d7-29554aa5dfab", null, "admin", "admin" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hotels",
+                columns: new[] { "HotelID", "AvailableDouble", "AvailableFamily", "AvailableSingle", "DoublePrice", "FamilyPrice", "HotelLocation", "HotelName", "SinglePrice" },
+                values: new object[,]
+                {
+                    { 1, 20, 20, 20, 775, 950, "London", "Hilton London Hotel", 375 },
+                    { 2, 20, 20, 20, 500, 900, "London", "London Marriott Hotel", 300 },
+                    { 3, 20, 20, 20, 120, 150, "Brighton", "Travelodge Brighton Seafront", 80 },
+                    { 4, 20, 20, 20, 400, 520, "Brighton", "Kings Hotel Brighton", 180 },
+                    { 5, 20, 20, 20, 400, 520, "Brighton", "Leonardo Hotel Brighton", 180 },
+                    { 6, 20, 20, 20, 100, 155, "Fort William", "Nevis Bank Inn, Fort William", 90 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tours",
+                columns: new[] { "TourID", "Duration", "TourName", "TourPrice", "TourSpaces" },
+                values: new object[,]
+                {
+                    { 1, 6, "Real Britain", 1200, 30 },
+                    { 2, 16, "Britain and Ireland Explorer", 2000, 40 },
+                    { 3, 12, "Best of Britain", 2900, 30 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -198,6 +296,11 @@ namespace ccse_cw1.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Booking_UserID",
+                table: "Booking",
+                column: "UserID");
         }
 
         /// <inheritdoc />
@@ -217,6 +320,15 @@ namespace ccse_cw1.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Booking");
+
+            migrationBuilder.DropTable(
+                name: "Hotels");
+
+            migrationBuilder.DropTable(
+                name: "Tours");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

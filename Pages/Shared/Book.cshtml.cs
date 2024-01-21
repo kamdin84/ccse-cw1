@@ -1,89 +1,109 @@
+using ccse_cw1.Models;
+using ccse_cw1.Repositories;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing.Printing;
 
 namespace ccse_cw1.Pages.Shared
 {
+    [Authorize]
     public class BookModel : PageModel
     {
+        public readonly UserManager<ApplicationUser> UserManager;
+       
+        public ApplicationUser? appUser;
+
+        private readonly BookingRepository _bookingRepository;
+        public List<Hotel> Hotels { get; set; }
+        public List<Tour> Tours { get; set; }
+        public BookModel(UserManager<ApplicationUser> userManager, BookingRepository bookingRepository)
+        {
+            _bookingRepository = bookingRepository;
+            UserManager = userManager;
+            Hotels = _bookingRepository.GetHotels();
+            Tours = _bookingRepository.GetTours();
+        }
+
         public void OnGet()
         {
 
         }
-        /// </summary>
+
         [BindProperty]
         public InputModel Input { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public string ReturnUrl { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        /// 
-
-        public class InputModel
+        
+        public class InputModel 
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+            [Display(Name = "Room Number")]
+            public int RoomNumber { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Password { get; set; }
+            [Display(Name = "Hotel")]
+            public int HotelID { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
+            [Display(Name = "Tour")]
+            public int TourId { get; set; }
 
-            [Display(Name = "First Name")]
-            [Required]
-            public string FirstName { get; set; }
+            [Display(Name = "Package")]
+            public int? Discount { get; set; }
 
-            [Display(Name = "Last Name")]
-            [Required]
-            public string LastName { get; set; }
+            public string? RoomType { get; set; }
 
-            [Display(Name = "Phone Number")]
-            [Required]
-            public string PhoneNumber { get; set; }
+            [Required(ErrorMessage = "Please select a check-in date")]
+            [DataType(DataType.DateTime)]
+            [Display(Name = "Check in date")]
+            public DateTime CheckIn { get; set; }
 
-            [Display(Name = "Address")]
-            [Required]
-            public string Address { get; set; }
-
+            [Required(ErrorMessage = "Please select a check-out date")]
+            [DataType(DataType.DateTime)]
+            [Display(Name = "Check out date")]
+            public DateTime CheckOut { get; set; }
 
 
         }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var IsHotel = !(Input.HotelID == 0);
+            var IsTour = !(Input.TourId == 0);
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            var user = await UserManager.GetUserAsync(User);
+
+            Booking booking = new();
+
+            if (IsHotel & IsTour)
+            {
+
+                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, Input.HotelID, Input.RoomType, Input.TourId);
+            }
+            else if (IsHotel)
+            {
+                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, Input.HotelID, Input.RoomType);
+            }
+            else if (IsTour)
+            {
+                booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, tourid: Input.TourId);
+            }
+
+            if (booking.UserID != null)
+            {
+                return Redirect("");
+            }
+
+            return Page();
+
+        }
+
     }
 
 }
+

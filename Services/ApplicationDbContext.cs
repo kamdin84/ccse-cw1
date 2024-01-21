@@ -35,7 +35,7 @@ namespace ccse_cw1.Services
 
             // lets seed some data :D YAY
             
-            var hotels = new List<Hotels> {
+            var hotels = new List<Hotel> {
                 new() { HotelName = "Hilton London Hotel", HotelLocation = "London", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20, SinglePrice = 375, DoublePrice = 775, FamilyPrice = 950 },
                 new() { HotelName = "London Marriott Hotel", HotelLocation = "London", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20,  SinglePrice = 300, DoublePrice = 500, FamilyPrice = 900 },
                 new() { HotelName = "Travelodge Brighton Seafront", HotelLocation = "Brighton", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20,  SinglePrice = 80, DoublePrice = 120, FamilyPrice = 150 },
@@ -49,13 +49,28 @@ namespace ccse_cw1.Services
             {
                 id += 1;
                 hotel.HotelID = id;
-                builder.Entity<Hotels>().HasData(hotel);
+                builder.Entity<Hotel>().HasData(hotel);
+            }
+
+
+            var tours = new List<Tour> {
+                new() { TourName = "Real Britain", TourPrice = 1200, TourSpaces = 30, Duration = 6 },
+                new() { TourName = "Britain and Ireland Explorer", TourPrice = 2000, TourSpaces = 40, Duration = 16 },
+                new() { TourName = "Best of Britain", TourPrice = 2900, TourSpaces = 30, Duration = 12 },
+            };
+
+            id = 0;
+            foreach (var tour in tours)
+            {
+                id += 1;
+                tour.TourID = id;
+                builder.Entity<Tour>().HasData(tour);
             }
         }
 
-        public DbSet<Hotels> Hotels { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Booking> Booking { get; set; }
-        public DbSet<Tours> Tours { get; set; }
+        public DbSet<Tour> Tours { get; set; }
 
 
     

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ccse_cw1.Models
 {
-    public class Hotels
+    public class Hotel
     {
         [Key]
         public int HotelID { get; set; }

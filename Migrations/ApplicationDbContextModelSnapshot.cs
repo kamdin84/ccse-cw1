@@ -51,19 +51,19 @@ namespace ccse_cw1.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2025ae78-1a2d-4964-abfb-485cafeefe4f",
+                            Id = "9cd74423-b8f6-49b4-a3d7-29554aa5dfab",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "9c3a8516-d3f5-4b0c-9cc5-e1dc63ac1a99",
+                            Id = "09d19ae5-e310-4131-9614-a4f8c2364ae3",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "89a59882-ab84-4282-b3c9-be758813c88e",
+                            Id = "3f5c63af-a095-4613-a28c-e7b8e8bc59b5",
                             Name = "seller",
                             NormalizedName = "seller"
                         });
@@ -423,8 +423,8 @@ namespace ccse_cw1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TourID"));
 
-                    b.Property<DateTime>("TourEnd")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
 
                     b.Property<string>("TourName")
                         .IsRequired()
@@ -436,12 +436,35 @@ namespace ccse_cw1.Migrations
                     b.Property<int>("TourSpaces")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("TourStart")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("TourID");
 
                     b.ToTable("Tours");
+
+                    b.HasData(
+                        new
+                        {
+                            TourID = 1,
+                            Duration = 6,
+                            TourName = "Real Britain",
+                            TourPrice = 1200,
+                            TourSpaces = 30
+                        },
+                        new
+                        {
+                            TourID = 2,
+                            Duration = 16,
+                            TourName = "Britain and Ireland Explorer",
+                            TourPrice = 2000,
+                            TourSpaces = 40
+                        },
+                        new
+                        {
+                            TourID = 3,
+                            Duration = 12,
+                            TourName = "Best of Britain",
+                            TourPrice = 2900,
+                            TourSpaces = 30
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
