@@ -35,6 +35,19 @@ namespace ccse_cw1.Pages.Shared
         }
 
         [BindProperty]
+        public SearchModel Search { get; set;  }
+
+        public class SearchModel
+        {
+            public required DateTime CheckIn { get; set; } = DateTime.MinValue;
+            public required DateTime CheckOut { get; set; }
+            public required string RoomType { get; set; }
+        }
+
+
+
+
+            [BindProperty]
         public InputModel Input { get; set; }
         
         public class InputModel 
@@ -68,6 +81,10 @@ namespace ccse_cw1.Pages.Shared
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (Search.CheckIn != DateTime.MinValue)
+            {
+                
+            }
             var IsHotel = !(Input.HotelID == 0);
             var IsTour = !(Input.TourId == 0);
 

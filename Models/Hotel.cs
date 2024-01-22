@@ -13,9 +13,7 @@ namespace ccse_cw1.Models
         public int SinglePrice { get; set; }
         public int DoublePrice { get; set; }
         public int FamilyPrice { get; set; }
-        public int AvailableSingle {  get; set; }
-        public int AvailableDouble { get; set; }
-        public int AvailableFamily { get; set;}
+ 
     }
 
     }

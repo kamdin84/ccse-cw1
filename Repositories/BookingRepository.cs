@@ -59,7 +59,9 @@ namespace ccse_cw1.Repositories
             var tour = _context.Tours.FirstOrDefault(h => h.TourID == tourid);
             var hotel = _context.Hotels.FirstOrDefault(h => h.HotelID == hotelid);
             var availablecount = 0;
-
+            var availableSingle = 20;
+            var availableDouble = 20;
+            var availableFamily = 20;
             
                 
             if (hotel != null)
@@ -67,25 +69,22 @@ namespace ccse_cw1.Repositories
                     if (roomtype == "single")
                     {
                         discount = 10;
-                        cost += hotel.SinglePrice;
-                        availablecount = hotel.AvailableSingle;
-                        hotel.AvailableSingle -= 1;
+                        cost += hotel.SinglePrice; 
+                        availableSingle -= 1;
                     }
                     else if (roomtype == "double")
                     {
                         discount = 20;
                         cost += hotel.DoublePrice;
-                        availablecount = hotel.AvailableDouble;
-                        hotel.AvailableDouble -= 1;
+                        availableDouble -= 1;
                     
                 }
                     else if (roomtype == "family")
                     {
-                    availablecount = hotel.AvailableFamily;
                     discount = 40;
-                    hotel.FamilyPrice -= 1;
                     cost += hotel.FamilyPrice;
-                }
+                    availableFamily -= 1;
+                    }
                 }
                 
                 if (availablecount <= 0)
