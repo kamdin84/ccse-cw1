@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ccse_cw1.Migrations
 {
     /// <inheritdoc />
-    public partial class FourthMigration : Migration
+    public partial class BookingMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -230,9 +230,9 @@ namespace ccse_cw1.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "09d19ae5-e310-4131-9614-a4f8c2364ae3", null, "client", "client" },
-                    { "3f5c63af-a095-4613-a28c-e7b8e8bc59b5", null, "seller", "seller" },
-                    { "9cd74423-b8f6-49b4-a3d7-29554aa5dfab", null, "admin", "admin" }
+                    { "643e8889-3f6d-432a-aba6-56ca518ea9ee", null, "admin", "admin" },
+                    { "6b3916ba-b3b1-4d7d-99b0-6f303d9b383f", null, "client", "client" },
+                    { "d5c662ad-a827-49c7-9231-4ae2244ac962", null, "seller", "seller" }
                 });
 
             migrationBuilder.InsertData(
@@ -240,12 +240,12 @@ namespace ccse_cw1.Migrations
                 columns: new[] { "HotelID", "AvailableDouble", "AvailableFamily", "AvailableSingle", "DoublePrice", "FamilyPrice", "HotelLocation", "HotelName", "SinglePrice" },
                 values: new object[,]
                 {
-                    { 1, 20, 20, 20, 775, 950, "London", "Hilton London Hotel", 375 },
-                    { 2, 20, 20, 20, 500, 900, "London", "London Marriott Hotel", 300 },
-                    { 3, 20, 20, 20, 120, 150, "Brighton", "Travelodge Brighton Seafront", 80 },
-                    { 4, 20, 20, 20, 400, 520, "Brighton", "Kings Hotel Brighton", 180 },
-                    { 5, 20, 20, 20, 400, 520, "Brighton", "Leonardo Hotel Brighton", 180 },
-                    { 6, 20, 20, 20, 100, 155, "Fort William", "Nevis Bank Inn, Fort William", 90 }
+                    { 1, 20, 40, 60, 775, 950, "London", "Hilton London Hotel", 375 },
+                    { 2, 20, 40, 60, 500, 900, "London", "London Marriott Hotel", 300 },
+                    { 3, 20, 40, 60, 120, 150, "Brighton", "Travelodge Brighton Seafront", 80 },
+                    { 4, 20, 40, 60, 400, 520, "Brighton", "Kings Hotel Brighton", 180 },
+                    { 5, 20, 40, 60, 400, 520, "Brighton", "Leonardo Hotel Brighton", 180 },
+                    { 6, 20, 40, 60, 100, 155, "Fort William", "Nevis Bank Inn, Fort William", 90 }
                 });
 
             migrationBuilder.InsertData(

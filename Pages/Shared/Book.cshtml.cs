@@ -94,9 +94,9 @@ namespace ccse_cw1.Pages.Shared
                 booking = await _bookingRepository.CreateBookingAsync(user.Id, Input.CheckIn, Input.CheckOut, tourid: Input.TourId);
             }
 
-            if (booking.UserID != null)
+            if (booking != null || booking.CreatedAt == DateTime.MinValue)
             {
-                return Redirect("");
+                return RedirectToPage("./BookSuccess");
             }
 
             return Page();

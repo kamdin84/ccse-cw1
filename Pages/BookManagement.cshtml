@@ -1,0 +1,13 @@
+﻿@page
+@model ccse_cw1.Pages.BookManagementModel
+@{
+}
+
+@foreach (var booking in Model.Bookings)
+{
+    <p>@booking.BookingID</p>
+    <p>@booking.RoomNumber</p>
+    <p>@booking.CreatedAt</p>
+    <p>@booking.Cost</p>
+    <p>@booking.UserID</p>
+}

@@ -1,4 +1,6 @@
-﻿namespace ccse_cw1.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ccse_cw1.Models
 {
     public class Booking
     {

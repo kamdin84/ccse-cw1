@@ -36,12 +36,12 @@ namespace ccse_cw1.Services
             // lets seed some data :D YAY
             
             var hotels = new List<Hotel> {
-                new() { HotelName = "Hilton London Hotel", HotelLocation = "London", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20, SinglePrice = 375, DoublePrice = 775, FamilyPrice = 950 },
-                new() { HotelName = "London Marriott Hotel", HotelLocation = "London", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20,  SinglePrice = 300, DoublePrice = 500, FamilyPrice = 900 },
-                new() { HotelName = "Travelodge Brighton Seafront", HotelLocation = "Brighton", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20,  SinglePrice = 80, DoublePrice = 120, FamilyPrice = 150 },
-                new() { HotelName = "Kings Hotel Brighton", HotelLocation = "Brighton", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20,  SinglePrice = 180, DoublePrice = 400, FamilyPrice = 520},
-                new() { HotelName = "Leonardo Hotel Brighton", HotelLocation = "Brighton", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20,  SinglePrice = 180, DoublePrice = 400, FamilyPrice = 520},
-                new() { HotelName = "Nevis Bank Inn, Fort William", HotelLocation = "Fort William", AvailableDouble = 20, AvailableFamily = 20, AvailableSingle = 20, SinglePrice = 90, DoublePrice = 100, FamilyPrice = 155 },
+                new() { HotelName = "Hilton London Hotel", HotelLocation = "London", AvailableDouble = 20, AvailableFamily = 40, AvailableSingle = 60, SinglePrice = 375, DoublePrice = 775, FamilyPrice = 950 },
+                new() { HotelName = "London Marriott Hotel", HotelLocation = "London", AvailableDouble = 20, AvailableFamily = 40, AvailableSingle = 60,  SinglePrice = 300, DoublePrice = 500, FamilyPrice = 900 },
+                new() { HotelName = "Travelodge Brighton Seafront", HotelLocation = "Brighton", AvailableDouble = 20, AvailableFamily = 40, AvailableSingle = 60,  SinglePrice = 80, DoublePrice = 120, FamilyPrice = 150 },
+                new() { HotelName = "Kings Hotel Brighton", HotelLocation = "Brighton", AvailableDouble = 20, AvailableFamily = 40, AvailableSingle = 60,  SinglePrice = 180, DoublePrice = 400, FamilyPrice = 520},
+                new() { HotelName = "Leonardo Hotel Brighton", HotelLocation = "Brighton", AvailableDouble = 20, AvailableFamily = 40, AvailableSingle = 60,  SinglePrice = 180, DoublePrice = 400, FamilyPrice = 520},
+                new() { HotelName = "Nevis Bank Inn, Fort William", HotelLocation = "Fort William", AvailableDouble = 20, AvailableFamily = 40, AvailableSingle = 60, SinglePrice = 90, DoublePrice = 100, FamilyPrice = 155 },
             };
 
             var id = 0;

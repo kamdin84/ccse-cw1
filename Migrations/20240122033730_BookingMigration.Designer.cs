@@ -12,8 +12,8 @@ using ccse_cw1.Services;
 namespace ccse_cw1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240119201504_FourthMigration")]
-    partial class FourthMigration
+    [Migration("20240122033730_BookingMigration")]
+    partial class BookingMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,19 +54,19 @@ namespace ccse_cw1.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9cd74423-b8f6-49b4-a3d7-29554aa5dfab",
+                            Id = "643e8889-3f6d-432a-aba6-56ca518ea9ee",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "09d19ae5-e310-4131-9614-a4f8c2364ae3",
+                            Id = "6b3916ba-b3b1-4d7d-99b0-6f303d9b383f",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "3f5c63af-a095-4613-a28c-e7b8e8bc59b5",
+                            Id = "d5c662ad-a827-49c7-9231-4ae2244ac962",
                             Name = "seller",
                             NormalizedName = "seller"
                         });
@@ -305,7 +305,7 @@ namespace ccse_cw1.Migrations
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("ccse_cw1.Models.Hotels", b =>
+            modelBuilder.Entity("ccse_cw1.Models.Hotel", b =>
                 {
                     b.Property<int>("HotelID")
                         .ValueGeneratedOnAdd()
@@ -348,8 +348,8 @@ namespace ccse_cw1.Migrations
                         {
                             HotelID = 1,
                             AvailableDouble = 20,
-                            AvailableFamily = 20,
-                            AvailableSingle = 20,
+                            AvailableFamily = 40,
+                            AvailableSingle = 60,
                             DoublePrice = 775,
                             FamilyPrice = 950,
                             HotelLocation = "London",
@@ -360,8 +360,8 @@ namespace ccse_cw1.Migrations
                         {
                             HotelID = 2,
                             AvailableDouble = 20,
-                            AvailableFamily = 20,
-                            AvailableSingle = 20,
+                            AvailableFamily = 40,
+                            AvailableSingle = 60,
                             DoublePrice = 500,
                             FamilyPrice = 900,
                             HotelLocation = "London",
@@ -372,8 +372,8 @@ namespace ccse_cw1.Migrations
                         {
                             HotelID = 3,
                             AvailableDouble = 20,
-                            AvailableFamily = 20,
-                            AvailableSingle = 20,
+                            AvailableFamily = 40,
+                            AvailableSingle = 60,
                             DoublePrice = 120,
                             FamilyPrice = 150,
                             HotelLocation = "Brighton",
@@ -384,8 +384,8 @@ namespace ccse_cw1.Migrations
                         {
                             HotelID = 4,
                             AvailableDouble = 20,
-                            AvailableFamily = 20,
-                            AvailableSingle = 20,
+                            AvailableFamily = 40,
+                            AvailableSingle = 60,
                             DoublePrice = 400,
                             FamilyPrice = 520,
                             HotelLocation = "Brighton",
@@ -396,8 +396,8 @@ namespace ccse_cw1.Migrations
                         {
                             HotelID = 5,
                             AvailableDouble = 20,
-                            AvailableFamily = 20,
-                            AvailableSingle = 20,
+                            AvailableFamily = 40,
+                            AvailableSingle = 60,
                             DoublePrice = 400,
                             FamilyPrice = 520,
                             HotelLocation = "Brighton",
@@ -408,8 +408,8 @@ namespace ccse_cw1.Migrations
                         {
                             HotelID = 6,
                             AvailableDouble = 20,
-                            AvailableFamily = 20,
-                            AvailableSingle = 20,
+                            AvailableFamily = 40,
+                            AvailableSingle = 60,
                             DoublePrice = 100,
                             FamilyPrice = 155,
                             HotelLocation = "Fort William",
@@ -418,7 +418,7 @@ namespace ccse_cw1.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ccse_cw1.Models.Tours", b =>
+            modelBuilder.Entity("ccse_cw1.Models.Tour", b =>
                 {
                     b.Property<int>("TourID")
                         .ValueGeneratedOnAdd()
