@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ccse_cw1.Pages
 {
-    [Authorize(Roles = "admin")]
     public class BookManagementModel : PageModel
     {
 

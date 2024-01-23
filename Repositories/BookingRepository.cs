@@ -88,8 +88,8 @@ namespace ccse_cw1.Repositories
                 }
                 
                 if (availablecount <= 0)
-            {
-                return new Booking
+                {
+                     return new Booking
                 {
                     CreatedAt = DateTime.MinValue
                 };
@@ -107,7 +107,6 @@ namespace ccse_cw1.Repositories
                         {
                             HotelID = hotelid,
                             UserID = userid,
-                            RoomNumber = availablecount,
                             CheckIn = checkin,
                             CheckOut = checkout,
                             CreatedAt = DateTime.Now,
@@ -130,7 +129,6 @@ namespace ccse_cw1.Repositories
                     {
                         HotelID = hotelid,
                         UserID = userid,
-                        RoomNumber = availablecount,
                         CheckIn = checkin,
                         CheckOut = checkout,
                         CreatedAt = DateTime.Now,

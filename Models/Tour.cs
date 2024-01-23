@@ -13,6 +13,7 @@ namespace ccse_cw1.Models
         public int TourSpaces { get; set;}
         public int Duration { get; set;}
 
+        public virtual Booking? Bookings { get; set;}
 
     }
 }

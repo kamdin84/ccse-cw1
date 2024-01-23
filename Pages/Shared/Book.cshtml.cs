@@ -34,6 +34,7 @@ namespace ccse_cw1.Pages.Shared
 
         }
 
+        /*
         [BindProperty]
         public SearchModel Search { get; set;  }
 
@@ -43,6 +44,7 @@ namespace ccse_cw1.Pages.Shared
             public required DateTime CheckOut { get; set; }
             public required string RoomType { get; set; }
         }
+        */
 
 
 
@@ -52,8 +54,6 @@ namespace ccse_cw1.Pages.Shared
         
         public class InputModel 
         {
-            [Display(Name = "Room Number")]
-            public int RoomNumber { get; set; }
 
             [Display(Name = "Hotel")]
             public int HotelID { get; set; }
@@ -61,8 +61,6 @@ namespace ccse_cw1.Pages.Shared
             [Display(Name = "Tour")]
             public int TourId { get; set; }
 
-            [Display(Name = "Package")]
-            public int? Discount { get; set; }
 
             public string? RoomType { get; set; }
 
@@ -81,10 +79,6 @@ namespace ccse_cw1.Pages.Shared
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (Search.CheckIn != DateTime.MinValue)
-            {
-                
-            }
             var IsHotel = !(Input.HotelID == 0);
             var IsTour = !(Input.TourId == 0);
 

@@ -1,11 +1,13 @@
 using ccse_cw1.Models;
 using ccse_cw1.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ccse_cw1.Pages
 {
+    [Authorize(Roles = "client")]
     public class UserBookingsModel : PageModel
     {
         public List<Booking> Bookings { get; set; }

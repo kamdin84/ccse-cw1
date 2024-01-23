@@ -1,16 +1,27 @@
 ﻿@page
+@using ccse_cw1.Models
 @model ccse_cw1.Pages.UserBookingsModel
 @{
 }
 
-@if (Model.Bookings != null)
+@foreach (var booking in Model.Bookings)
 {
-    @foreach (var booking in Model.Bookings)
-    {
-        <p>@booking.BookingID</p>
-        <p>@booking.RoomNumber</p>
-        <p>@booking.CreatedAt</p>
-        <p>@booking.Cost</p>
-        <p>@booking.UserID</p>
-    }
+    <table style="class=" table table-success table-striped"; border="1">
+        <tbody>
+            <tr style="height: 18px;">
+                <td style="width: 16.6667%; height: 18px;"> Booking ID </td>
+                <td style="width: 16.6667%; height: 18px;"> Date Created </td>
+                <td style="width: 16.6667%; height: 18px;"> Start Date </td>
+                <td style="width: 16.6667%; height: 18px;"> End Date </td>
+                <td style="width: 16.6667%; height: 18px;"> Cost </td>
+            </tr>
+            <tr style="height: 18px;">
+                <td style="width: 16.6667%; height: 18px;"> @booking.BookingID </td>
+                <td style="width: 16.6667%; height: 18px;"> @booking.CreatedAt </td>
+                <td style="width: 16.6667%; height: 18px;"> £££ </td>
+                <td style="width: 16.6667%; height: 18px;">&nbsp;</td>
+                <td style="width: 16.6667%; height: 18px;"> @booking.Cost </td>
+            </tr>
+        </tbody>
+    </table>
 }
