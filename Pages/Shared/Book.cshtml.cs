@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing.Printing;
+using System;
+using System.Web;
+using System.IO;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace ccse_cw1.Pages.Shared
 {
@@ -79,8 +84,10 @@ namespace ccse_cw1.Pages.Shared
 
         public async Task<IActionResult> OnPostAsync()
         {
+
             var IsHotel = !(Input.HotelID == 0);
             var IsTour = !(Input.TourId == 0);
+
 
             if (!ModelState.IsValid)
             {
@@ -109,6 +116,7 @@ namespace ccse_cw1.Pages.Shared
             {
                 return RedirectToPage("./BookSuccess");
             }
+            
 
             return Page();
 
@@ -118,3 +126,4 @@ namespace ccse_cw1.Pages.Shared
 
 }
 
+    

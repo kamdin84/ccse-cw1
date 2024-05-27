@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Web;
+using System.IO;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
@@ -137,12 +139,12 @@ namespace ccse_cw1.Areas.Identity.Pages.Account
             {
                 var user = new ApplicationUser()
                 {
-                    FirstName = Input.FirstName,
-                    LastName = Input.LastName,
-                    UserName = Input.Email,
-                    Email = Input.Email,
-                    PhoneNumber = Input.PhoneNumber,
-                    Address = Input.Address,
+                    FirstName = HttpUtility.HtmlEncode(Input.FirstName),
+                    LastName = HttpUtility.HtmlEncode(Input.LastName),
+                    UserName = HttpUtility.HtmlEncode(Input.Email),
+                    Email = HttpUtility.HtmlEncode(Input.Email),
+                    PhoneNumber = HttpUtility.HtmlEncode(Input.PhoneNumber),
+                    Address = HttpUtility.HtmlEncode(Input.Address),
                     CreatedAt = DateTime.Now,
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
