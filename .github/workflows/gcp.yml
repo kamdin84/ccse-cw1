@@ -10,7 +10,6 @@ env:
   PROJECT: pacific-tours-424606
   REPO: main
   IMAGE: pacific-tours:ci-cd
-  SOLUTION_NAME: ccse-cw1
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -36,9 +35,6 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
   
-
-      - name: Restore project dependencies
-        run: dotnet restore ${{ env.SOLUTION_NAME }}
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/dotnet@master
